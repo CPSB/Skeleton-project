@@ -57,7 +57,7 @@ class RoleController extends Controller
         $this->validate($request, ['name' => 'required|unique:roles']);
 
         if (Role::create($request->only('name'))) {
-            flash('Role added.');
+            flash(trans('roles.flash-success-role-add'));
         }
 
         return redirect()->back();
@@ -79,9 +79,9 @@ class RoleController extends Controller
 
             $permissions = $request->get('permissions', []);
             $role->syncPermissions($permissions);
-            flash( $role->name . ' permissions has been updated.');
+            flash(trans('roles.flash-success-role-updated', ['name' => $role->name]));
         } else {
-            flash()->error( 'Role with id '. $id .' note found.');
+            flash()->error(trans('roles.flash-error-role-updated', ['id' => $id]));
         }
 
         return redirect()->route('roles.index');
@@ -100,10 +100,10 @@ class RoleController extends Controller
             $role->syncPermissions([]); // Empty relation for clearing the permissions relation.
             $role->delete();
 
-            flash('We have deleted the permission group');
+            flash(trans('roles.flash-success-role-delete'));
             return redirect()->route('roles.index');
         } catch (ModelNotFoundException $modelNotFoundException) {
-            flash('We could not delete the permission group.')->error();
+            flash(trans('roles.flash-error-role-delete'))->error();
             return redirect()->route('roles.index');
         }
     }
