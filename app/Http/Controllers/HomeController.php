@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ActivismeBE\Http\Controllers;
 
-use App\Countries;
+use ActivismeBE\Countries;
 use Illuminate\Http\Request;
 
 /**

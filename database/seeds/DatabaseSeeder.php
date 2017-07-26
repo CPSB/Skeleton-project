@@ -1,8 +1,8 @@
 <?php
 
-use App\User;
-use App\Permission;
-use App\Role;
+use ActivismeBE\User;
+use ActivismeBE\Permission;
+use ActivismeBE\Role;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
