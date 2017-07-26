@@ -39,5 +39,3 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('notifications/index', 'NotificationsController@index')->name('notifications.index');
 });
 
-Route::resource('support', 'SupportController');
-

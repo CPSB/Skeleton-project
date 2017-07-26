@@ -6,6 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
+        "activismebe/database-layering": "dev-master",
         "barryvdh/laravel-debugbar": "^2.4",
         "cybercog/laravel-ban": "^2.1",
         "doctrine/dbal": "^2.5",

@@ -5,14 +5,14 @@
         <div class="jumbotron">
             <h1>
                 <span class="fa fa-bolt orange" aria-hidden="true"></span>
-                502 Bad gateway.
+                @lang('errors.title-502')
             </h1>
             <p class="lead">
-                The web server is returning an unexpected networking error for <em><span id="display-domain"></span>.</em>
+                @lang('errors.title-description-502') <em><span id="display-domain"></span>.</em>
             </p>
 
             <a href="javascript:document.location.reload(true)" class="btn btn-default btn-lg text-center">
-                <span class="green">Try this page again.</span>
+                <span class="green">@lang('errors.btn-try-again-502')</span>
             </a>
         </div>
     </div>
@@ -21,33 +21,26 @@
         <div class="body-content">
             <div class="row">
                 <div class="col-md-6">
-                    <h2>What happend?</h2>
-                    <p class="lead">
-                        A 502 error status implies that the server received an invalid response from an upstream server it accessed to fulfill the request. 
-                    </p>
+                    <h2>@lang('errors.what-happend-502')</h2>
+                    <p class="lead">@lang('errors.what-happend-text-502')</p>
                 </div>
 
                 <div class="col-md-6">
-                    <h2>What can i do?</h2>
+                    <h2>@lang('errors.what-to-do-title-502')</h2>
 
-                    <p class="lead">If you're a site visitor</p>
+                    <p class="lead">@lang('errors.what-to-do-title-user-502')</p>
                     <p>
                         <a onclick="javascript:checkSite();">
-                            Check to see if this website is down for everyone or just you.</a>
+                            @lang('errors.what-to-do-text-user-502-1')
                         </a>
                     </p>
 
                     <p>
-                        Also, clearing your browser caching and refreshing the page may clear this issue. 
-                        If the problem persists, and you need immediate assistance, please send us an email instead. 
+                        @lang('errors.what-to-do-text-dev-502-2')
                     </p>
 
-                    <p class="lead">If you're the site owner</p>
-                    <p>
-                        Clearing your browser cache and refreshing the page may clear this issue.
-                        If the problem persists and you need immediate assistance, 
-                        please contact your website provider.
-                    </p>
+                    <p class="lead">@lang('errors.what-to-do-title-dev-502')</p>
+                    <p>@lang('errors.what-to-do-text-dev-502')</p>
                 </div>
             </div>
         </div>

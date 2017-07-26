@@ -3,11 +3,13 @@
 @section('content')
     <div class="container">
         <div class="jumbotron">
-            <h1><span class="fa fa-exclamation-traingle orange"></span> 503 Service Unavailble</h1>
+            <h1><span class="fa fa-exclamation-traingle orange"></span> 503 @lang('errors.title-503')</h1>
             <p class="lead">
-                The web server is returning an unexpected temporary error for <em><span id="display-domain"></span></em>.
+                @lang('errors.title-description-503') <em><span id="display-domain"></span></em>.
             </p>
-            <a href="javascript:document.location.reload(true);" class="btn btn-default btn-lg text-center"><span class="green">Try this page again.</span></a>
+            <a href="javascript:document.location.reload(true);" class="btn btn-default btn-lg text-center">
+                <span class="green">@lang('errors.button-try-again-503')</span>
+            </a>
         </div>
     </div>
 
@@ -15,22 +17,21 @@
         <div class="body-content">
             <div class="row">
                 <div class="col-md-6">
-                    <h2>What happend?</h2>
+                    <h2>@lang('errors.what-happend-503')</h2>
                     <p class="lead">
-                        A 503 error status implies that this is a temporary condition due to a temporary 
-                        overloading or maintenance of the server. This error is normally a brief temporary interruption.
+                        @lang('errors.what-happend-503-text')
                     </p>
                 </div>
 
                 <div class="col-md-6">
-                    <h2>What can I do?</h2>
-                    
-                    <p class="lead">If you're a site visitor</p>
-                    <p>If you need immediate assistance, please send us an email instead. We apologize for any inconvenience.</p>
+                    <h2>@lang('errors.what-to-do-title-503')</h2>
 
-                    <p class="lead">If you're the site owner</p>
-                    <p>This error is mostly likely very brief, the best thing to do is to check back in a few minutes and everything will probably be working normal again.</p>
-                </div>            
+                    <p class="lead">@lang('errors.what-to-do-title-user-503')</p>
+                    <p>@lang('errors.what-to-do-text-user-503')</p>
+
+                    <p class="lead">@lang('errors.what-to-do-title-dev-503')</p>
+                    <p>@lang('errors.what-to-do-text-dev-503')</p>
+                </div>
             </div>
         </div>
     </div>

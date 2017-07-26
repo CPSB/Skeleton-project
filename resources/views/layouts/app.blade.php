@@ -187,6 +187,12 @@
 
         <script>
             $(function () {
+                $(".custom-close").on('click', function() {
+                    $('#myModal').modal('hide');
+                });
+            });
+
+            $(function () {
                 // flash auto hide
                 $('#flash-msg .alert').not('.alert-danger, .alert-important').delay(6000).slideUp(500);
             })

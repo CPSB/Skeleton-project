@@ -3,10 +3,10 @@
 @section('content')
     <div class="container">
         <div class="jumbotron">
-            <h1><span class="glyphicon glyphicon-fire red"></span> 500 Internal server error.</h1>
-            <p class="lead">The web server is returning an internal server errror for <em><span id="display-domain"></span></em></p>
-            <a href"javascript:document.location.reload(true);" class="btn btn-default btn-lg text-center">
-                <span class="green">Try this page again</span>
+            <h1><span class="glyphicon glyphicon-fire red"></span> 500 @lang('errors.title-500')</h1>
+            <p class="lead">@lang('errors.title-description-500') <em><span id="display-domain"></span></em></p>
+            <a href="javascript:document.location.reload(true);" class="btn btn-default btn-lg text-center">
+                <span class="green">@lang('errors.button-try-again-500')</span>
             </a>
         </div>
     </div>
@@ -15,19 +15,16 @@
         <div class="body-content">
             <div class="row">
                 <div class="col-md-6">
-                    <h2>What happend?</h2>
-                    <p class="lead">
-                        A 500 error status implies there is a problem with the web server's software
-                        causing it to malfunction. 
-                    </p>
+                    <h2>@lang('errors.what-happend-500')</h2>
+                    <p class="lead">@lang('errors.what-happend-text-500')</p>
                 </div>
 
                 <div class="col-md-6">
-                    <h2>What can i do?</h2>
-                    <p>Nothig you can do at the moment. If you need immediate assistance, please send us an email instead. We apologize for any inconvenience.</p>            
-                    
-                    <h2>If you're the site owner.</h2>
-                    <p class="lead">This error can only be fixed by server admins, please contact your admins or your website provider.</p>
+                    <h2>@lang('errors.what-to-do-title-user-500')</h2>
+                    <p>@lang('errors.what-to-do-text-user-500')</p>
+
+                    <h2>@lang('errors.what-to-do-title-dev-500')</h2>
+                    <p class="lead">@lang('errors.what-to-do-text-dev-500')</p>
                 </div>
             </div>
         </div>

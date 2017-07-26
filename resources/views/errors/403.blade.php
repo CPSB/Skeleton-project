@@ -3,15 +3,15 @@
 @section('content')
     <div class="container">
         <div class="jumbotron">
-            <h1><span class="fa fa-ban red" aria-hidden="true"></span> 403 Forbidden</h1>
+            <h1><span class="fa fa-ban red" aria-hidden="true"></span> 403 @lang('errors.title-403')</h1>
 
             <p class="lead">
-                Sorry! You don't have access permissions for that on <em><span id="display-domain"></em>.
+                @lang('errors.title-description-403') <em><span id="display-domain"></em>.
             </p>
 
             <p>
-                <a onclick="hjavascript::checkSite();" class="btn btn-default btn-lg">
-                   Take me to the homepage.     
+                <a onclick="javascript::checkSite();" class="btn btn-default btn-lg">
+                   @lang('errors.button-homepage-403')
                 </a>
             </p>
         </div>
@@ -21,27 +21,19 @@
         <div class="body-content">
             <div class="row">
                 <div class="col-md-6">
-                    <h2>What happend?</h2>
+                    <h2>@lang('errors.what-happend-403')</h2>
 
                     <p class="lead">
-                        A 403 error status indicates that you don't have permission to access the file or page.
-                        In general, web servers and websites have directories and files that are not open to the 
-                        public web for security reasons.
+                        @lang('errors.what-happend-text-403')
                     </p>
                 </div>
                 <div class="col-md-6">
-                    <h2>What can i do?</h2>
-                    <p class="lead">If you're a site visitor.</p>
-                    <p>
-                        Please use your browsers back button and check that you're in the right place.  
-                        If you need immediate assistance, please send us an email instead.
-                    </p>
+                    <h2>@lang('errors.what-to-do-title-403')</h2>
+                    <p class="lead">@lang('errors.what-to-do-title-usr-403')</p>
+                    <p>@lang('errors.what-to-do-text-user-403')</p>
 
-                    <p class="lead">If you're the site owner.</p>
-                    <p>
-                        Please check that you're in the right place and get in touch with your website provider 
-                        if you believe this to be an error.
-                    </p>
+                    <p class="lead">@lang('errors.what-to-do-dev-title-403')</p>
+                    <p>@lang('errors.what-to-text-dev-403')</p>
                 </div>
             </div>
         </div>

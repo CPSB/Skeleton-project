@@ -1,5 +1,7 @@
 # Project skeleton
 
+![alt tag](https://raw.githubusercontent.com/CPSB/Artwork/master/branding/gh-banner.jpg)
+
 Project Skeleton is the Larevel template that is used for (nearly) all our projects. 
 
 You may use our template but please notice that we offer no support whatsoever. We also don't follow 

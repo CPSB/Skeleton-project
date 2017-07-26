@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - #36: Implementation for the config variable. authencation routes.
 - #30: Fix bugs in the appleication routes.
 - #38: Implementation for the patch log
+- #13: Add error pages 
 - #46 Aanpassing middleware role. 
 
 ## [1.0. - Initial release
