@@ -20,7 +20,7 @@ return [
     'contact-store'             => 'Your question has been send. We will get in contact soon.',
 
     'placeholder-last-name'     => 'Your lastname',
-    'placeholder-first-name'    => 'YOur firstname',
+    'placeholder-first-name'    => 'Your firstname',
     'placeholder-email'         => 'Your E-mail address',
     'placeholder-subject'       => 'Subject',
     'placeholder-message'       => 'Your message',
