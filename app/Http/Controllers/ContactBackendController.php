@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ActivismeBE\Http\Controllers;
 
-use App\Contact;
+use ActivismeBE\Contact;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
@@ -23,7 +23,6 @@ class ContactBackendController extends Controller
         $this->middleware('auth');
         $this->middleware('lang');
         $this->middleware('banned');
-        $this->middleware('role:Admin,access_contact');
     }
 
     /**

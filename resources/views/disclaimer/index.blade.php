@@ -1,4 +1,4 @@
-@extends('layouts.front-end')
+@extends('layouts.app')
 
 @section('title', 'Disclaimer')
 
@@ -58,7 +58,7 @@
 
                     <h3>Privacybeleid.</h3>
 
-                    <p><strong>ActivismeBE hecht beland aan uw privacy.</strong></p>
+                    <p><strong>ActivismeBE hecht belang aan uw privacy.</strong></p>
                     <p>In geval de gebruiker van de website om persoonlijke informatie gevraagd wordt:</p>
 
                     <p>

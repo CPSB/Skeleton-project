@@ -4,9 +4,59 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d7d625891cf5b259adef2f7541de1ca9",
-    "content-hash": "30e69b64a2cf0299f5930cf9999bfc5d",
+    "hash": "050a413fb3b7bbe22171f7c09e2fa8d3",
+    "content-hash": "7990730073905d0934d147813d22753d",
     "packages": [
+        {
+            "name": "activismebe/database-layering",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Tjoosten/ActivismeBE-database-layering.git",
+                "reference": "c69b5854321d8d853fae71a72a990e8cf2bd6d89"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Tjoosten/ActivismeBE-database-layering/zipball/c69b5854321d8d853fae71a72a990e8cf2bd6d89",
+                "reference": "c69b5854321d8d853fae71a72a990e8cf2bd6d89",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^5.2",
+                "illuminate/database": "^5.2",
+                "illuminate/filesystem": "^5.2",
+                "illuminate/support": "^5.2",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ActivismeBE\\DatabaseLayering\\": "src/ActivismeBE/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Laravel Repositories",
+            "homepage": "https://www.activisme.be",
+            "keywords": [
+                "database",
+                "eloquent",
+                "laravel",
+                "repositories",
+                "repository"
+            ],
+            "time": "2017-07-17 06:10:55"
+        },
         {
             "name": "barryvdh/laravel-debugbar",
             "version": "v2.4.3",
@@ -5132,7 +5182,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "activismebe/database-layering": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

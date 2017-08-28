@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ActivismeBE\Http\Controllers;
 
-use App\User;
+use ActivismeBE\User;
 use Illuminate\Http\Request;
 
 /**
@@ -25,7 +25,6 @@ class AccountSettingsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:Admin');
         $this->middleware('banned');
         $this->middleware('lang');
     }

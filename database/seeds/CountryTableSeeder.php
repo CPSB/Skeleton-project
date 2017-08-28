@@ -1,6 +1,6 @@
 <?php
 
-use App\Countries;
+use ActivismeBE\Countries;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 

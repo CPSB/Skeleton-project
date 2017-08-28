@@ -16,8 +16,8 @@ class CreateCountriesTable extends Migration
         if (! Schema::hasTable('countries')) {
             Schema::create('countries', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('long_name');
                 $table->string('short_name');
+                $table->string('long_name');
                 $table->timestamps();
             });
         }
@@ -30,8 +30,7 @@ class CreateCountriesTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('countries')) {
-            Schema::dropIfExists('countries');
-        }
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('countries');
     }
 }
