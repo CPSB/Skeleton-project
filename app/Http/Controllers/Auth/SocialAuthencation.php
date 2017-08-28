@@ -65,11 +65,15 @@ class SocialAuthencation extends Controller
             return $authUser;
         }
 
-        return User::create([
+        $user = User::create([
             'name'              => $user->name,
             'email'             => $user->email,
             "{$provider}_id"    => $user->id,
             'avatar'            => $user->avatar
         ]);
+
+        $user->assignRole('User');
+
+        return $user;
     }
 }

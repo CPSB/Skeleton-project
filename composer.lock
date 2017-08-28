@@ -4,32 +4,35 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "050a413fb3b7bbe22171f7c09e2fa8d3",
-    "content-hash": "7990730073905d0934d147813d22753d",
+    "hash": "3ae09479218c382b29d8129bdf103174",
+    "content-hash": "bbaf9a59d333460fd3dff4090ebbd490",
     "packages": [
         {
             "name": "activismebe/database-layering",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Tjoosten/ActivismeBE-database-layering.git",
-                "reference": "c69b5854321d8d853fae71a72a990e8cf2bd6d89"
+                "url": "https://github.com/CPSB/ActivismeBE-database-layering.git",
+                "reference": "94a23f1a13040b02df88e9be13b76146610fb469"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Tjoosten/ActivismeBE-database-layering/zipball/c69b5854321d8d853fae71a72a990e8cf2bd6d89",
-                "reference": "c69b5854321d8d853fae71a72a990e8cf2bd6d89",
+                "url": "https://api.github.com/repos/CPSB/ActivismeBE-database-layering/zipball/94a23f1a13040b02df88e9be13b76146610fb469",
+                "reference": "94a23f1a13040b02df88e9be13b76146610fb469",
                 "shasum": ""
             },
             "require": {
-                "illuminate/console": "^5.2",
-                "illuminate/database": "^5.2",
-                "illuminate/filesystem": "^5.2",
-                "illuminate/support": "^5.2",
-                "php": ">=7.0.0"
+                "illuminate/console": "5.4.*|5.5.*",
+                "illuminate/database": "5.4.*|5.5.*",
+                "illuminate/filesystem": "5.4.*|5.5.*",
+                "illuminate/support": "5.4.*|5.5.*",
+                "php": ">=5.6.0"
             },
             "require-dev": {
-                "mockery/mockery": "dev-master@dev"
+                "mockery/mockery": "dev-master@dev",
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "~5.7|~6.0",
+                "squizlabs/php_codesniffer": "3.*"
             },
             "type": "library",
             "extra": {
@@ -55,7 +58,7 @@
                 "repositories",
                 "repository"
             ],
-            "time": "2017-07-17 06:10:55"
+            "time": "2017-08-16 16:42:26"
         },
         {
             "name": "barryvdh/laravel-debugbar",
