@@ -32,4 +32,14 @@ class UserRepository extends Repository
     {
         return $this->model->findOrFail(auth()->user()->id);
     }
+
+    /**
+     * Get an instance from the repository instance.
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function baseModel()
+    {
+        return $this->model;
+    }
 }

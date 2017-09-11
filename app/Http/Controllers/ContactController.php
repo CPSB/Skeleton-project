@@ -56,7 +56,7 @@ class ContactController extends Controller
     public function store(ContactValidator $input)
     {
         if ($mail = $this->messages->create($input->except('_token'))) {
-            $users = $this->users->role('Admin')->get();
+            $users = $this->users->baseModel()->role('Admin')->get();
 
             foreach ($users as $user) {
                 $user->notify((new ContactMessage($mail)));

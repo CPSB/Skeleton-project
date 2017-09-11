@@ -67,17 +67,17 @@ class ContactBackendController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Request $input The input form the form.
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $input)
     {
         try {
-            if ($this->contactRepository->findMessage($id)->delete()) {
+            if ($this->contactRepository->findMessage($input->messageId)->delete()) {
                 flash('The contact message has been deleted.')->success();
             }
 
-            return back(302);
+            return redirect()->route('contact.backend.index');
         } catch (ModelNotFoundException $modelNotFoundException) {
             return app()->abort(302);
         }
