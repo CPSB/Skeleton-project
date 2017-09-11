@@ -2,7 +2,7 @@
 
 namespace ActivismeBE\Http\Controllers;
 
-use ActivismeBE\Contact;
+use ActivismeBE\Repositories\ContactRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
@@ -18,11 +18,18 @@ use Illuminate\Http\Request;
  */
 class ContactBackendController extends Controller
 {
-    public function __construct()
+    /**
+     * @var ContactRepository
+     */
+    private $contactRepository;
+
+    public function __construct(ContactRepository $contactRepository)
     {
         $this->middleware('auth');
         $this->middleware('lang');
         $this->middleware('banned');
+
+        $this->contactRepository = $contactRepository;
     }
 
     /**
@@ -32,7 +39,7 @@ class ContactBackendController extends Controller
      */
     public function index()
     {
-        $unreads = new Contact;
+        $unreads = $this->contactRepository->baseModel();
         return view('contact.backend-index', compact('unreads'));
     }
 
@@ -45,7 +52,7 @@ class ContactBackendController extends Controller
     public function show($id)
     {
         try {
-            $message = Contact::findOrFail($id);
+            $message = $this->contactRepository->findMessage($id);
 
             if ($message->is_read === 'N') {
                 $message->update(['is_read' => 'Y', 'read_by' => auth()->user()->id]);
@@ -66,9 +73,7 @@ class ContactBackendController extends Controller
     public function destroy($id)
     {
         try {
-            $message = Contact::firstOrFail($id);
-
-            if ($message->delete()) {
+            if ($this->contactRepository->findMessage($id)->delete()) {
                 flash('The contact message has been deleted.')->success();
             }
 
