@@ -2,10 +2,10 @@
 
 namespace ActivismeBE\Http\Controllers;
 
+use ActivismeBE\Repositories\NotificationRepository;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Illuminate\Notifications\DatabaseNotification;
 
 /**
  * Class NotificationsController
@@ -20,15 +20,23 @@ use Illuminate\Notifications\DatabaseNotification;
 class NotificationsController extends Controller
 {
     /**
+     * @var NotificationRepository
+     */
+    private $notifications;
+
+    /**
      * NotificationsController constructor.
      *
+     * @param  NotificationRepository $notifications
      * @return void
      */
-    public function __construct()
+    public function __construct(NotificationRepository $notifications)
     {
         $this->middleware('auth');
         $this->middleware('banned');
         $this->middleware('lang');
+
+        $this->notifications = $notifications;
     }
 
     /**
@@ -50,7 +58,7 @@ class NotificationsController extends Controller
     public function markOne($notificationId)
     {
         try {
-            $notification = DatabaseNotification::findOrFail($notificationId);
+            $notification = $this->notifications->findNotification($notificationId);
 
             if ($notification->update(['read_at' => Carbon::now()])) {
                 flash('The notification has been read.');
