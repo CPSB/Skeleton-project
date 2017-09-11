@@ -2,8 +2,8 @@
 
 namespace ActivismeBE\Http\Controllers;
 
-use ActivismeBE\Role;
-use ActivismeBE\Permission;
+use ActivismeBE\Repositories\PermissionRepository;
+use ActivismeBE\Repositories\RoleRepository;
 use ActivismeBE\Traits\Authorizable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -23,14 +23,30 @@ class RoleController extends Controller
     use Authorizable;
 
     /**
+     * @var RoleRepository
+     */
+    private $roleRepository;
+
+    /**
+     * @var PermissionRepository
+     */
+    private $permissionRepository;
+
+    /**
      * Create a new controller instance.
+     *
+     * @param RoleRepository       $roleRepository
+     * @param PermissionRepository $permissionRepository
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(RoleRepository $roleRepository, PermissionRepository $permissionRepository)
     {
         $this->middleware('banned');
         $this->middleware('lang');
+
+        $this->roleRepository       = $roleRepository;
+        $this->permissionRepository = $permissionRepository;
     }
 
     /**
@@ -40,8 +56,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles       = Role::all();
-        $permissions = Permission::all();
+        $roles       = $this->roleRepository->all();
+        $permissions = $this->permissionRepository->all();
 
         return view('role.index', compact('roles', 'permissions'));
     }
@@ -56,7 +72,7 @@ class RoleController extends Controller
     {
         $this->validate($request, ['name' => 'required|unique:roles']);
 
-        if (Role::create($request->only('name'))) {
+        if ($this->roleRepository->create($request->only('name'))) {
             flash('Role added.');
         }
 
@@ -71,9 +87,9 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($role = Role::findOrFail($id)) {
-            if ($role->name === 'Admin') {  // admin role has everything
-                $role->syncPermissions(Permission::all());
+        if ($role = $this->roleRepository->findRole($id)) {
+            if ($this->roleRepository->isAdmin($role->name)) {  // admin role has everything
+                $role->syncPermissions($this->permissionRepository->all());
                 return redirect()->route('roles.index');
             }
 
@@ -96,7 +112,7 @@ class RoleController extends Controller
     public function destroy($roleId)
     {
         try {
-            $role = Role::findOrFail($roleId);
+            $role = $this->roleRepository->findRole($roleId);
             $role->syncPermissions([]); // Empty relation for clearing the permissions relation.
             $role->delete();
 
