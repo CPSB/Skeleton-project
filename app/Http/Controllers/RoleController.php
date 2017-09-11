@@ -105,7 +105,7 @@ class RoleController extends Controller
 
     /**
      * Delete a permission group in the database.
-     * sss
+     *
      * @param  integer $roleId the permission group in the database.
      * @return \Illuminate\Http\RedirectResponse
      */
