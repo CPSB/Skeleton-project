@@ -2,7 +2,10 @@
 
 namespace Tests\Feature;
 
+use ActivismeBE\Notifications\ContactMessage;
 use ActivismeBE\Role;
+use ActivismeBE\User;
+use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -36,7 +39,12 @@ class ContractFrontTest extends TestCase
      */
     public function testStoreFrontEndContactFormNValidationErrors()
     {
+        Notification::fake();
+
         factory(Role::class)->create(['name' => 'Admin']);
+        $user = factory(User::class)->create();
+
+        User::find($user->id)->assignRole('Admin');
 
         $input = [
             'first_name' => 'first name.',
@@ -49,6 +57,8 @@ class ContractFrontTest extends TestCase
         $this->post(route('contact.store'), $input)
             ->assertSessionHas(['flash_notification.0.message' => trans('contact.contact-store')])
             ->assertStatus(302);
+
+        Notification::assertSentTo([$user], ContactMessage::class);
 
 
         $this->assertDatabaseHas('contacts', $input);
