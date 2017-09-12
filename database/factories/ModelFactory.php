@@ -27,3 +27,8 @@ $factory->define(ActivismeBE\User::class, function (Faker\Generator $faker) {
 $factory->define(ActivismeBE\Role::class, function (Faker\Generator $faker) {
     return ['name' => $faker->word];
 });
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(ActivismeBE\Permission::class, function (Faker\Generator $faker) {
+    return ['name' => $faker->word];
+});
