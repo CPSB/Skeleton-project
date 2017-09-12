@@ -22,3 +22,8 @@ $factory->define(ActivismeBE\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(ActivismeBE\Role::class, function (Faker\Generator $faker) {
+    return ['name' => $faker->word];
+});

@@ -12,11 +12,17 @@ class HomeTest extends TestCase
 {
     use DatabaseMigrations, DatabaseTransactions;
 
+    /**
+     * @test
+     */
     public function testHomeView()
     {
         $this->get(route('index'))->assertStatus(200);
     }
 
+    /**
+     * @test
+     */
     public function testHomeBackendView()
     {
         $user = factory(User::class)->create();
