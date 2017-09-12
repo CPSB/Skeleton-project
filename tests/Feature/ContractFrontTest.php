@@ -22,6 +22,18 @@ class ContractFrontTest extends TestCase
     /**
      * @test
      */
+    public function testStoreFrontEndContactFormValidationErrors()
+    {
+        factory(Role::class)->create(['name' => 'Admin']);
+
+        $this->post(route('contact.store'), [])
+            ->assertStatus(302)
+            ->assertSessionHasErrors();
+    }
+
+    /**
+     * @test
+     */
     public function testStoreFrontEndContactFormNValidationErrors()
     {
         factory(Role::class)->create(['name' => 'Admin']);
