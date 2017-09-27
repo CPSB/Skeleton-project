@@ -77,8 +77,9 @@ class AccountSettingsController extends Controller
     public function updateSecurity(Request $request)
     {
         $this->validate($request, ['password' => 'required|string|min:6|confirmed']);
+        $input = ['password' => bcrypt($request->password)];
 
-        if ($this->userRepository->authencatedUser()->update(bcrypt($request->all()))) {
+        if ($this->userRepository->authencatedUser()->update($input)) {
             flash(trans('profile-settings.flash-password'))->success();
         }
 
