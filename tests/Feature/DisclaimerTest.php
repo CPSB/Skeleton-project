@@ -9,6 +9,9 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class DisclaimerTest extends TestCase
 {
+    /**
+     * @test
+     */
     public function testDisclaimer()
     {
         $this->get(route('disclaimer.index'))->assertStatus(200);
