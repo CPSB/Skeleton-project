@@ -175,6 +175,7 @@ return [
         Spatie\Backup\BackupServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Cog\Ban\Providers\BanServiceProvider::class,
+        ActivismeBE\DatabaseLayering\Repositories\Providers\RepositoryProvider::class,
 
         /*
          * Application Service Providers...

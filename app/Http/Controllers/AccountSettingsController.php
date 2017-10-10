@@ -2,7 +2,7 @@
 
 namespace ActivismeBE\Http\Controllers;
 
-use ActivismeBE\User;
+use ActivismeBE\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 /**
@@ -18,15 +18,23 @@ use Illuminate\Http\Request;
 class AccountSettingsController extends Controller
 {
     /**
+     * @var UserRepository
+     */
+    private $userRepository;
+
+    /**
      * Account Settings constructor
      *
+     * @param  UserRepository $userRepository The database repository for the users.
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRepository $userRepository)
     {
         $this->middleware('auth');
         $this->middleware('banned');
         $this->middleware('lang');
+
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -36,7 +44,7 @@ class AccountSettingsController extends Controller
      */
     public function index()
     {
-        $user = User::findOrFail(auth()->user()->id);
+        $user = $this->userRepository->authencatedUser();
         return view('auth.settings', compact('user'));
     }
 
@@ -53,7 +61,7 @@ class AccountSettingsController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
         ]);
 
-        if (User::findOrFail(auth()->user()->id)->update($request->all())) {
+        if ($this->userRepository->authencatedUser()->update($request->all())) {
             flash(trans('profile-settings.flash-info'))->success();
         }
 
@@ -69,8 +77,9 @@ class AccountSettingsController extends Controller
     public function updateSecurity(Request $request)
     {
         $this->validate($request, ['password' => 'required|string|min:6|confirmed']);
+        $input = ['password' => bcrypt($request->password)];
 
-        if (User::findOrFail(auth()->user()->id)->update(bcrypt($request->all()))) {
+        if ($this->userRepository->authencatedUser()->update($input)) {
             flash(trans('profile-settings.flash-password'))->success();
         }
 
