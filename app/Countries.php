@@ -4,12 +4,12 @@ namespace ActivismeBE;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contact extends Model
+class Countries extends Model
 {
     /**
      * Mass-assign fields for the database table.
-     * 
+     *
      * @var array
      */
-    protected $fillable = ['first_name', 'last_name', 'email', 'message', 'subject'];
+    protected $fillable = ['short_name', 'long_name'];
 }

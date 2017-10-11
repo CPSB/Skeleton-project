@@ -33,7 +33,7 @@
                     <p>@lang('errors.what-to-do-text-user-403')</p>
 
                     <p class="lead">@lang('errors.what-to-do-dev-title-403')</p>
-                    <p>@lang('errors.what-to-text-dev-403')</p>
+                    <p>@lang('errors.what-to-do-text-dev-403')</p>
                 </div>
             </div>
         </div>

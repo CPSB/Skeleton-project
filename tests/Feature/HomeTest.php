@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\User;
+use ActivismeBE\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -12,11 +12,17 @@ class HomeTest extends TestCase
 {
     use DatabaseMigrations, DatabaseTransactions;
 
+    /**
+     * @test
+     */
     public function testHomeView()
     {
         $this->get(route('index'))->assertStatus(200);
     }
 
+    /**
+     * @test
+     */
     public function testHomeBackendView()
     {
         $user = factory(User::class)->create();

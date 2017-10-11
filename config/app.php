@@ -175,15 +175,16 @@ return [
         Spatie\Backup\BackupServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Cog\Ban\Providers\BanServiceProvider::class,
+        ActivismeBE\DatabaseLayering\Repositories\Providers\RepositoryProvider::class,
 
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        ActivismeBE\Providers\AppServiceProvider::class,
+        ActivismeBE\Providers\AuthServiceProvider::class,
+        // ActivismeBE\Providers\BroadcastServiceProvider::class,
+        ActivismeBE\Providers\EventServiceProvider::class,
+        ActivismeBE\Providers\RouteServiceProvider::class,
 
     ],
 

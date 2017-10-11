@@ -16,9 +16,11 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-body">Application barebone.</div>
-            </div>
+            <div class="panel panel-default"> {{-- This can be deleted. --}}
+                <div class="panel-heading">
+                    Applicatie barebone:
+                </div>
+            </div> {{-- END deletable content --}}
         </div>
     </div>
 @endsection

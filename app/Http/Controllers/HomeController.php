@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ActivismeBE\Http\Controllers;
 
-use App\Countries;
+use ActivismeBE\Repositories\CountryRepository;
 use Illuminate\Http\Request;
 
 /**
@@ -18,26 +18,33 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     /**
+     * @var CountryRepository
+     */
+    private $countryRepository;
+
+    /**
      * Create a new controller instance.
      *
+     * @param  CountryRepository $countryRepository     The Country database repository
      * @return void
      */
-    public function __construct()
+    public function __construct(CountryRepository $countryRepository)
     {
         $this->middleware('banned')->only(['backend']);
         $this->middleware('auth')->only(['backend']);
         $this->middleware('lang');
+
+        $this->countryRepository = $countryRepository;
     }
 
     /**
      * The application front-page.
      *
-     * @return void
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        $countries = new Countries;
-        return view('welcome', compact('countries'));
+        return view('welcome', ['countries' => $this->countryRepository->baseModel()]);
     }
 
     /**

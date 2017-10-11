@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace ActivismeBE\Http\Controllers\Auth;
 
-use App\User;
+use ActivismeBE\User;
 use Exception;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use ActivismeBE\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Laravel\Socialite\Facades\Socialite;
@@ -65,11 +65,15 @@ class SocialAuthencation extends Controller
             return $authUser;
         }
 
-        return User::create([
+        $user = User::create([
             'name'              => $user->name,
             'email'             => $user->email,
             "{$provider}_id"    => $user->id,
             'avatar'            => $user->avatar
         ]);
+
+        $user->assignRole('User');
+
+        return $user;
     }
 }

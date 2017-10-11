@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ActivismeBE\Http\Controllers;
 
-use App\Contact;
-use App\User;
-use App\Notifications\ContactMessage;
-use App\Http\Requests\ContactValidator;
+use ActivismeBE\Repositories\ContactRepository;
+use ActivismeBE\Repositories\UserRepository;
+use ActivismeBE\Notifications\ContactMessage;
+use ActivismeBE\Http\Requests\ContactValidator;
 use Illuminate\Http\Request;
 
 /**
@@ -20,16 +20,16 @@ use Illuminate\Http\Request;
  */
 class ContactController extends Controller
 {
-    private $messages;  /** @var Contact    $messages   The contact database model. */
-    private $users;     /** @var User       $users      The user database model.    */
+    private $messages;  /** @var ContactRepository    $messages   The contact database model. */
+    private $users;     /** @var UserRepository       $users      The user database model.    */
 
     /**
      * Create a new controller instance.
      *
-     * @param Contact $messages
-     * @param User    $users
+     * @param ContactRepository $messages   The contact database repository.
+     * @param UserRepository    $users      The user database repository.
      */
-    public function __construct(Contact $messages, User $users)
+    public function __construct(ContactRepository $messages, UserRepository $users)
     {
         $this->middleware('lang');
 
@@ -50,13 +50,13 @@ class ContactController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\ContactValidator  $input
+     * @param  \ActivismeBE\Http\Requests\ContactValidator  $input
      * @return \Illuminate\Http\Response
      */
     public function store(ContactValidator $input)
     {
         if ($mail = $this->messages->create($input->except('_token'))) {
-            $users = $this->users->role('Admin')->get();
+            $users = $this->users->baseModel()->role('Admin')->get();
 
             foreach ($users as $user) {
                 $user->notify((new ContactMessage($mail)));
