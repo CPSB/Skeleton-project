@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Roles & Permissions')
+@section('title', trans('roles.title-html'))
 
 @section('content')
     {{-- Modal --}}
@@ -14,19 +14,21 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
 
-                    <h4 class="modal-title" id="roleModalLabel">Role</h4>
+                    <h4 class="modal-title" id="roleModalLabel">@lang('roles.title')</h4>
                 </div>
                 <div class="modal-body">
                     {{-- Name Form input --}}
                     <div class="form-group @if ($errors->has('name')) has-error @endif">
-                        {!! Form::label('name', 'Name') !!}
-                        {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Role Name']) !!}
+                        {!! Form::label('name', trans('roles.label-name')) !!}
+                        {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => trans('roles.placeholder-name')]) !!}
                         @if ($errors->has('name')) <p class="help-block">{{ $errors->first('name')}}</p> @endif
                     </div>
                 </div>
                 <div class="modal-footer">
-                    {{ Form::submit('Submit', ['class' => 'btn btn-success']) }} {{-- Submit form button --}}
-                    <button type="button" class="btn btn-default" aria-label="Close" data-dismiss="modal">Close</button>
+                    {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }} {{-- Submit form button --}}
+                    <button type="button" class="btn btn-default" data-dissmiss="modal">
+                        @lang('roles.view-button-modal-close')
+                    </button>
                 </div>
                 {{ Form::close() }}
             </div>
@@ -40,7 +42,7 @@
         <div class="col-md-7 page-action text-right">
             @can('add_roles')
                 <a href="#" class="btn btn-sm btn-success pull-right" data-toggle="modal" data-target="#roleModal">
-                    <i class="glyphicon glyphicon-plus"></i> New
+                    <i class="glyphicon glyphicon-plus"></i> @lang('roles.view-button-new')
                 </a>
             @endcan
         </div>
@@ -50,16 +52,18 @@
         {!! Form::model($role, ['method' => 'PUT', 'route' => ['roles.update',  $role->id ], 'style' => 'margin-bottom: 25px;']) !!}
 
         @if ($role->name === 'Admin')
-            @include('shared._permissions', ['title' => $role->name .' Permissions', 'options' => ['disabled'] ])
+            @include('shared._permissions', ['title' => trans('roles.view-collapse-heading', ['name' => $role->name]), 'options' => ['disabled'] ])
         @else
-            @include('shared._permissions', ['title' => $role->name .' Permissions', 'model' => $role ])
+            @include('shared._permissions', ['title' => trans('roles.view-collapse-heading', ['name' => $role->name]), 'model' => $role ])
 
             @can('edit_roles')
-                {!! Form::submit('Save ' . $role->name . ' permissions', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit(trans('roles.view-button-save', ['name' => $role->name]), ['class' => 'btn btn-primary']) !!}
                 @if ($role->name !== 'Admin' && $role->name !== 'User')
                     <form action="{{ route('roles.destroy', $role) }}" >
                         {{ method_field('DELETE') }}
-                        <button class="btn btn-danger" type="submit">Delete {{ $role->name }}</button>
+                        <button class="btn btn-danger" type="submit">
+                            @lang('roles.view-button-role-delete', ['name' => $role->name])
+                        </button>
                     </form>
                 @endif
             @endcan
@@ -68,6 +72,6 @@
         {!! Form::close() !!}
 
     @empty
-        <p>No Roles defined, please run <code>php artisan db:seed</code> to seed some dummy data.</p>
+        <p>{!! trans('roles.view-error-no-roles') !!}</p>
     @endforelse
 @endsection
