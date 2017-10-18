@@ -83,6 +83,7 @@ class RoleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  integer                   $id        The primary key in the storage
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
